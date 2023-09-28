@@ -10,7 +10,7 @@ const Header = () => {
             <div className="text-center">
                 <img src={logo} alt="" />
                 <p className='text-secondary'><small>Journalism Without Fear or Favour</small></p>
-                <p>{moment().format("dddd, MMMM Do, YYYY")}</p>
+                <h5>{moment().format("dddd, MMMM Do, YYYY")}</h5>
             </div>
             <div className='d-flex'>
                 <Button variant="danger">Latest</Button>
