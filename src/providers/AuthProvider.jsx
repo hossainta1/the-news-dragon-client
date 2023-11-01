@@ -9,16 +9,20 @@ const Auth = getAuth(app)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    const [lodding, setLodding] = useState(true);
 
     const createUser = (email, password) => {
+        setLodding(true);
         return createUserWithEmailAndPassword(Auth, email, password);
     }
 
     const signIn = (email, password) => {
+        setLodding(true);
         return signInWithEmailAndPassword(Auth, email, password);
     }
 
     const logOut = () => {
+        setLodding(true);
         return signOut(Auth)
 
     }
@@ -29,6 +33,7 @@ const AuthProvider = ({ children }) => {
         const unsubcribe = onAuthStateChanged(Auth, loggedUser => {
             console.log("Logged in user inside auth state observer", loggedUser)
             setUser(loggedUser);
+            setLodding(false);
         })
         return () => {
             unsubcribe();
@@ -39,6 +44,7 @@ const AuthProvider = ({ children }) => {
 
     const AuthInfo = {
         user,
+        lodding,
         createUser,
         signIn,
         logOut,
