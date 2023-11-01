@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import useTitle from '../../../hooks/UseTitle';
 
 
 const Login = () => {
@@ -9,7 +10,9 @@ const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/category/0'
+    useTitle('Login');
+    const from = location.state?.from?.pathname || '/category/0';
+
 
     const handleLogin = event => {
         event.preventDefault();
@@ -22,7 +25,7 @@ const Login = () => {
             .then(result => {
                 const loogedUser = result.user;
                 console.log(loogedUser);
-                navigate(from ,{replace : true} )
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
